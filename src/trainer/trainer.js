@@ -7,7 +7,8 @@ class Trainer {
   train(passage) {
     const words = passage.split(' ');
     for (const word of words) {
-      trie.processWord(word);
+      const stripped_word = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+      trie.processWord(stripped_word);
     }
   }
   getWords(fragment) {

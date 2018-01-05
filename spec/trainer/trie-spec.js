@@ -56,6 +56,9 @@ describe('trie', () => {
     const top_entry = entries[0];
     expect(top_entry.word).toMatch('woot');
     expect(top_entry.count).toMatch(3);
+    const bottom_entry = entries[2];
+    expect(bottom_entry.word).toMatch('wood');
+    expect(bottom_entry.count).toMatch(1);
   });
 
   it('gets nothing from wood and word', () => {
