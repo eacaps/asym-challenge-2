@@ -1,6 +1,6 @@
 {
   "name": "challenge",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Asymmetrik challenge 2.",
   "main": "src/main.js",
   "scripts": {

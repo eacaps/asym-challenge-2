@@ -1,6 +1,8 @@
 var Prompt = require('prompt');
 var AutocompleteProvider = require('./trainer/autocompleteprovider');
 
+// this is the main command prompt based program
+
 const trainer = new AutocompleteProvider();
 
 const train_pattern = '^t[rain]?';

@@ -43,6 +43,18 @@ describe('trie', () => {
     expect(SpecHelper.StringifiedContains({ word: 'word', confidence: 1 }, wor_words)).toBeTruthy();
   });
 
+  it('has woo and wood', () => {
+    const trie = new Trie();
+    trie.processWord('woo');
+    trie.processWord('wood');
+    expect(trie.countNodes()).toBe(4);
+    const entries = trie.getDictionary();
+    expect(entries.length).toBe(2);
+    expect(SpecHelper.StringifiedContains({ word: 'woo', confidence: 1 }, entries)).toBeTruthy();
+    const woo_words = trie.getWords('woo');
+    expect(woo_words.length).toBe(2);
+  });
+
   it('ranking', () => {
     const trie = new Trie();
     trie.processWord('wood');
