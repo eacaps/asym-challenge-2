@@ -13,7 +13,7 @@ Running this sample requires git and a relatively recent version of node and npm
 The command prompt accepts the commands train, input or exit.
 
 train: begins a prompt for a training passage  
-input: begins a prompy for a fragment lookup  
+input: begins a prompt for a fragment lookup  
 exit: exits the program
 
 ## Sample output
