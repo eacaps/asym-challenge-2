@@ -2,12 +2,13 @@
   "name": "challenge",
   "version": "0.0.1",
   "description": "Asymmetrik challenge 2.",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
+    "main": "node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "eacaps",
-  "license": "ISC",
+  "license": "Unlicense",
   "dependencies": {
     "prompt": "^1.0.0"
   }
