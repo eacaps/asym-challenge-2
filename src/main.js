@@ -1,14 +1,17 @@
-var prompt = require('prompt');
+var Prompt = require('prompt');
+var Trainer = require('./trainer/trainer');
 
-var train_pattern = '^t[rain]?';
-var input_pattern = '^i[nput]?';
-var exit_pattern = '^e[xit]?';
+const trainer = new Trainer();
 
-var prompt_validator = new RegExp(train_pattern + '|' + input_pattern + '|' + exit_pattern);
-var train_validator = new RegExp(train_pattern);
-var input_validator = new RegExp(input_pattern);
+const train_pattern = '^t[rain]?';
+const input_pattern = '^i[nput]?';
+const exit_pattern = '^e[xit]?';
 
-var prompt_properties = {
+const prompt_validator = new RegExp(train_pattern + '|' + input_pattern + '|' + exit_pattern);
+const train_validator = new RegExp(train_pattern);
+const input_validator = new RegExp(input_pattern);
+
+const prompt_properties = {
   properties: {
     main_prompt: {
       name: 'main_prompt',
@@ -21,27 +24,29 @@ var prompt_properties = {
       name: 'train_prompt',
       message: 'enter a training message',
       ask: function() {
-        return train_validator.test(prompt.history('main_prompt').value);
+        return train_validator.test(Prompt.history('main_prompt').value);
       }
     },
     input_prompt: {
       name: 'input_prompt',
       message: 'enter an input',
-      ask: function() {
-        return input_validator.test(prompt.history('main_prompt').value);
+      ask: () => {
+        return input_validator.test(Prompt.history('main_prompt').value);
       }
     }
   }
 };
 
-function run_prompt() {
-  prompt.start();
+const run_prompt = () => {
+  Prompt.start();
 
-  prompt.get(prompt_properties, function (err, result) {
+  Prompt.get(prompt_properties, function (err, result) {
     if(result.train_prompt) {
       console.log('train:' + result.train_prompt);
+      trainer.train(result.train_prompt);
     } else if(result.input_prompt) {
       console.log('input:' + result.input_prompt);
+      console.log(trainer.getWords(result.input_prompt));
     } else {
       console.log('good bye');
       process.exit();
