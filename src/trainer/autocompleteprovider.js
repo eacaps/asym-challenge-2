@@ -1,18 +1,18 @@
 var Trie = require('./trie');
-let trie = new Trie();
 
 class Trainer {
   constructor() {
+    this.trie = new Trie();
   }
   train(passage) {
     const words = passage.split(' ');
     for (const word of words) {
-      const stripped_word = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
-      trie.processWord(stripped_word);
+      const stripped_word = word.replace(/[.,!?]$/g, '').toLowerCase();
+      this.trie.processWord(stripped_word);
     }
   }
   getWords(fragment) {
-    return trie.getWords(fragment);
+    return this.trie.getWords(fragment.toLowerCase());
   }
 }
 

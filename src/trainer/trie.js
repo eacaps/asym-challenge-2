@@ -1,4 +1,5 @@
-var SortedArray = require("sorted-array");
+var SortedArray = require('sorted-array');
+var Candidate = require('./candidate');
 
 class Node {
   constructor(letter) {
@@ -36,16 +37,9 @@ const Count = (node, count) => {
   return count;
 };
 
-class DictionaryEntry {
-  constructor(word, count) {
-    this.word = word;
-    this.count = count;
-  }
-}
-
 const Dictionary = (node, word, words) => {
   if(node.count > 0) {
-    words.insert(new DictionaryEntry(word, node.count));
+    words.insert(new Candidate(word, node.count));
   }
 
   for (const key of Object.keys(node.children)) {
@@ -76,11 +70,16 @@ class Trie {
     return Dictionary(this.Root, '', SortedArray.comparing(Compare, [])).array;
   }
   getWords(fragment) {
+    if(!fragment || fragment === '') {
+      return [];
+    }
     let node = this.Root;
     for(const c in fragment) {
       const character = fragment[c];
       if(node.children[character]) {
         node = node.children[character];
+      } else {
+        return [];
       }
     }
 
@@ -89,7 +88,7 @@ class Trie {
 }
 
 const Compare = (entry) => {
-  return -entry.count;
+  return -entry.confidence;
 };
 
 module.exports = Trie;

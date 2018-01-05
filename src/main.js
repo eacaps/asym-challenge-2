@@ -1,7 +1,7 @@
 var Prompt = require('prompt');
-var Trainer = require('./trainer/trainer');
+var AutocompleteProvider = require('./trainer/autocompleteprovider');
 
-const trainer = new Trainer();
+const trainer = new AutocompleteProvider();
 
 const train_pattern = '^t[rain]?';
 const input_pattern = '^i[nput]?';

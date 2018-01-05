@@ -1,6 +1,7 @@
 #!javascript
 
 var Trie = require('../../src/trainer/trie');
+var SpecHelper = require('./spec-helper.js');
 
 describe('trie', () => {
   it('has one word', () => {
@@ -9,7 +10,7 @@ describe('trie', () => {
     expect(trie.countNodes()).toBe(4);
     const entries = trie.getDictionary();
     expect(entries.length).toBe(1);
-    expect(StringifiedContains({ word: 'word', count: 1 }, entries)).toBeTruthy();
+    expect(SpecHelper.StringifiedContains({ word: 'word', confidence: 1 }, entries)).toBeTruthy();
   });
 
   it('has word twice', () => {
@@ -19,7 +20,7 @@ describe('trie', () => {
     expect(trie.countNodes()).toBe(4);
     const entries = trie.getDictionary();
     expect(entries.length).toBe(1);
-    expect(StringifiedContains({ word: 'word', count: 2 }, entries)).toBeTruthy();
+    expect(SpecHelper.StringifiedContains({ word: 'word', confidence: 2 }, entries)).toBeTruthy();
   });
 
   it('has word and wood', () => {
@@ -29,17 +30,17 @@ describe('trie', () => {
     expect(trie.countNodes()).toBe(6);
     const entries = trie.getDictionary();
     expect(entries.length).toBe(2);
-    expect(StringifiedContains({ word: 'word', count: 1 }, entries)).toBeTruthy();
-    expect(StringifiedContains({ word: 'wood', count: 1 }, entries)).toBeTruthy();
+    expect(SpecHelper.StringifiedContains({ word: 'word', confidence: 1 }, entries)).toBeTruthy();
+    expect(SpecHelper.StringifiedContains({ word: 'wood', confidence: 1 }, entries)).toBeTruthy();
 
     const wo_words = trie.getWords('wo');
     expect(wo_words.length).toBe(2);
-    expect(StringifiedContains({ word: 'word', count: 1 }, wo_words)).toBeTruthy();
-    expect(StringifiedContains({ word: 'wood', count: 1 }, wo_words)).toBeTruthy();
+    expect(SpecHelper.StringifiedContains({ word: 'word', confidence: 1 }, wo_words)).toBeTruthy();
+    expect(SpecHelper.StringifiedContains({ word: 'wood', confidence: 1 }, wo_words)).toBeTruthy();
 
     const wor_words = trie.getWords('wor');
     expect(wor_words.length).toBe(1);
-    expect(StringifiedContains({ word: 'word', count: 1 }, wor_words)).toBeTruthy();
+    expect(SpecHelper.StringifiedContains({ word: 'word', confidence: 1 }, wor_words)).toBeTruthy();
   });
 
   it('ranking', () => {
@@ -55,10 +56,10 @@ describe('trie', () => {
     expect(entries.length).toBe(3);
     const top_entry = entries[0];
     expect(top_entry.word).toMatch('woot');
-    expect(top_entry.count).toMatch(3);
+    expect(top_entry.confidence).toMatch(3);
     const bottom_entry = entries[2];
     expect(bottom_entry.word).toMatch('wood');
-    expect(bottom_entry.count).toMatch(1);
+    expect(bottom_entry.confidence).toMatch(1);
   });
 
   it('gets nothing from wood and word', () => {
@@ -73,12 +74,3 @@ describe('trie', () => {
     expect(trie.getWords('bah')).toMatch([]);
   });
 });
-
-const StringifiedContains = (obj, list) => {
-  for (const item of list) {
-    if (JSON.stringify(item) === JSON.stringify(obj)) {
-      return true;
-    }
-  }
-  return false;
-}
