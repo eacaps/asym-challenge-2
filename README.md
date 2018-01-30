@@ -1,12 +1,12 @@
-# asymmetrik-challenge-2 - Mobile Device Keyboard
+# asym-challenge-2 - Mobile Device Keyboard
 
 This is an implementation of a Mobile Device Keyboard in javascript using node.js.
 
 ## Running
 Running this sample requires git and a relatively recent version of node and npm.
 
-    $ git clone git@github.com:eacaps/asymmetrik-challenge-2.git
-    $ cd asymmetrik-challenge-2
+    $ git clone git@github.com:eacaps/asym-challenge-2.git
+    $ cd asym-challenge-2
     $ npm install
     $ npm run main
 
@@ -24,7 +24,7 @@ exit: exits the program
     5.3.0
     eacaps$ npm run main
 
-    > challenge@1.0.0 main /Users/eacaps/Documents/jobs/asymmetrik/asymmetrik-challenge-2
+    > challenge@1.0.0 main /Users/eacaps/Documents/jobs/asym/asym-challenge-2
     > node src/main.js
 
     prompt: [t]rain, [i]nput or [e]xit:  (exit) t
