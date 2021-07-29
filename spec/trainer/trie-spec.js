@@ -1,6 +1,6 @@
 #!javascript
 
-var Trie = require('../../src/trainer/trie');
+var Trie = require('../../src/old/trie');
 var SpecHelper = require('./spec-helper.js');
 
 describe('trie', () => {

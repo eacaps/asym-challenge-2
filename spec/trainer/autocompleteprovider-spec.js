@@ -1,5 +1,5 @@
 #!javascript
-var AutocompleteProvider = require('../../src/trainer/autocompleteprovider');
+var AutocompleteProvider = require('../../src/old/autocompleteprovider');
 var SpecHelper = require('./spec-helper.js');
 
 describe('trainer', () => {
