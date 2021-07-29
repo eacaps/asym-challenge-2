@@ -5,7 +5,8 @@
   "main": "src/main.ts",
   "scripts": {
     "main": "ts-node src/main.ts",
-    "test": "jasmine-ts --config=jasmine.json"
+    "test": "jasmine-ts --config=jasmine.json",
+    "package": "tar --exclude node_modules --exclude repo.tar.gz --exclude .git -czvf dist/eac-challenge-2.tar.gz . --transform 's,^./,asym-challenge-2/,'"
   },
   "author": "eacaps",
   "license": "Unlicense",
