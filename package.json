@@ -1,17 +1,25 @@
 {
   "name": "challenge",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Asymmetrik challenge 2.",
-  "main": "src/main.js",
+  "main": "src/main.ts",
   "scripts": {
-    "main": "node src/main.js",
-    "test": "jasmine-node spec"
+    "main": "ts-node src/main.ts",
+    "test": "jasmine-ts --config=jasmine.json",
+    "package": "tar --exclude node_modules --exclude repo.tar.gz --exclude .git -czvf dist/eac-challenge-2.tar.gz . --transform 's,^./,asym-challenge-2/,'"
   },
   "author": "eacaps",
   "license": "Unlicense",
   "dependencies": {
-    "jasmine-node": "^1.14.5",
-    "prompt": "^1.0.0",
-    "sorted-array": "^2.0.1"
+    "prompt": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.8.2",
+    "@types/node": "^16.4.6",
+    "jasmine": "^3.8.0",
+    "jasmine-node": "3.0.0",
+    "jasmine-ts": "^0.4.0",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
   }
 }
